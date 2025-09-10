@@ -22,7 +22,7 @@
 
             <button type="submit">Convertir</button> <br>
 
-            <?php if (preg_match("/^-?\d+(\.\d+)?$/", $_POST["temperatura"])){
+            <?php if (preg_match("/^-?\d+(\.\d+)?$/", $_POST["temperatura"]) && (isset($_POST["temperatura"]) && isset($_POST["tipo"]))){
 
                 $temperatura = $_POST["temperatura"];
                 $tipo = $_POST["tipo"];

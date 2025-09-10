@@ -1,3 +1,6 @@
+<?php
+echo "Nonse q poner aki tio";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -4,6 +4,8 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 
 RUN a2enmod rewrite
 
+#RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 RUN printf "<Directory /var/www/html>\nOptions Indexes FollowSymLinks\nAllowOverride All\nRequire all granted\n</Directory>\n" \ > /etc/apache2/conf-available/z-override.conf \ && a2enconf z-override
 
 WORKDIR /var/www/html
