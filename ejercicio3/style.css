@@ -5,6 +5,7 @@
 }
 
 .container{
+    margin: 20px;
     display: flex;
     flex-direction: column;
 
@@ -17,10 +18,13 @@ table{
 
     text-align: center;
     border-collapse: collapse;
+    border: 1px solid black;
+
+    width: 500px;
 }
 
 table thead{
-    background-color: yellow;
+    background-color: rgb(223, 223, 61);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.5rem;
 }
@@ -37,6 +41,7 @@ table tfoot{
 
 table th, td{
     padding: 8px;
+    border: 1px solid black;
 }
 
 table caption{

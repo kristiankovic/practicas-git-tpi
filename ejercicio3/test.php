@@ -1,15 +1,42 @@
 <?php
-echo "Nonse q poner aki tio";
 
-$db_personas = [
-    ["Cristian Alexis", "Ventura Ventura", 23],
-    ["Carlos Joaquin", "Garcia Magaña", 21],
-    ["Edenilson Vladimir", "Sanchez Perez", 21]
+$db_productos = [
+
+    "Tecnología" =>
+
+    [
+        ["Laptop",      5,  899.99],
+        ["Mouse",       20, 15.50],
+        ["Teclado",     15, 25.00],
+        ["Monitor",     8,  199.99],
+        ["Impresora",   4,  120.00],
+        ["Router",      10, 45.75],
+        ["USB 64GB",    30, 12.90],
+        ["Auriculares", 18, 29.99],
+        ["Webcam",      6,  55.00],
+        ["Tablet",      7,  250.00]
+    ],
+
+    "Útiles escolares" =>
+
+    [
+        ["Lápiz", 100, 0.25],
+        ["Cuaderno", 50, 1.50],
+        ["Borrador", 80, 0.40],
+        ["Marcador", 60, 0.90],
+        ["Tijeras", 30, 2.75],
+        ["Resaltador", 45, 1.20],
+        ["Pegamento", 70, 0.80],
+        ["Corrector líquido", 40, 1.10],
+        ["Regla 30cm", 55, 0.95],
+        ["Clip metálico (caja)", 25, 1.60]
+    ]
 ];
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,72 +47,47 @@ $db_personas = [
 <body>
 
     <div class="container">
-        
+
         <table>
             <caption>Ejemplo de formulario</caption>
-    
+
             <thead>
                 <tr>
                     <th>
-                        Nombres
+                        Producto
                     </th>
-    
+
                     <th>
-                        Apellidos
+                        Stock
                     </th>
-    
+
                     <th>
-                        Edad
+                        Precio
                     </th>
                 </tr>
+
             </thead>
-    
+
             <tbody>
 
-                <?php for($i = 0; $i < count($db_personas); $i++) : ?>
+                <?php foreach($db_productos as $categoria => $productos) : ?>
+                    <tr>
+                        <th colspan="3"> <?= $categoria ?></th>
+                    </tr>
 
-                <tr>
-                    <td>
-                        <?php echo $db_personas[$i][0];?>
-                    </td>
+                    <?php foreach($productos as $producto) : ?>
+                    <tr>
+                        <td><?= $producto[0] ?></td>
+                        <td><?= $producto[1] ?></td>
+                        <td><?= $producto[2] ?></td>
 
-                    <td>
-                        <?php echo $db_personas[$i][1]; ?>
-                    </td>
-                    
-                    <td>
-                        <?php echo $db_personas[$i][2]; ?>
-                    </td>
-
-                </tr>
-
-                <?php endfor;?>
-
+                    </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
             </tbody>
 
-            <tfoot>
-
-            <?php 
-            $edades = 0;
-
-            for($i = 0; $i < count($db_personas); $i++){
-                
-                $edades += $db_personas[$i][2];
-            }
-
-            $promedio_edades = $edades / count($db_personas);
-
-            ?>
-
-            <tr>
-                <td>Edad promedio</td>
-                <td></td>
-                <td>
-                    <?php echo round($promedio_edades, 2); ?>
-                </td>
-            </tr>
-            </tfoot>
         </table>
-</div>
+    </div>
 </body>
+
 </html>
