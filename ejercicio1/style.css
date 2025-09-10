@@ -10,12 +10,29 @@
 .container{
     padding: 1.2rem;
     background-color: rgb(45, 95, 45);
+
     display: grid;
     grid-template-areas:'header . .' 
                         'card card card';
 
     place-content: center;
     gap: 1.4rem;
+
+    height: 91vh;
+}
+
+.container__index{
+    padding: 1.2rem;
+    background-color: rgb(45, 95, 45);
+
+    display: grid;
+    grid-template-areas:'header . .' 
+                        'card card card';
+
+    place-content: center;
+    gap: 1.4rem;
+
+    height: 100%;
 }
 
 .header{
@@ -27,7 +44,7 @@
     place-content: center;
     background-color: rgb(30, 30, 30);
 
-    height: 90px;
+    height: 85px;
 
     position: sticky;
     top: 0;

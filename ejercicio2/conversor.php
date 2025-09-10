@@ -11,6 +11,7 @@
 <body>
 
     <div class="container">
+        
         <form action="" method="post">
 
             <label for="temperatura">Ingrese la temperatura:</label>
