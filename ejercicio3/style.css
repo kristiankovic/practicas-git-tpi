@@ -6,12 +6,15 @@
 
 .container{
     margin: 20px;
-    display: flex;
-    flex-direction: column;
 
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-areas: 'caja caja';
+
+    place-content: center;
+
+    gap: 30px;
 }
+
 table{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.3rem;
