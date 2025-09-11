@@ -5,14 +5,62 @@
 }
 
 .container{
-    margin: 20px;
-
     display: grid;
-    grid-template-areas: 'caja caja';
+    grid-template-areas: 'box1 box2';
+}
 
-    place-content: center;
+.box1{
+    grid-area: 'box1';
 
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 40px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.box2{
+    grid-area: 'box2';
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    margin: 20px;
+    height: auto;
+    width: 100%;
+}
+
+form button{
+    background-color: blue;
+    color: white;
+
+    height: 45px;
+    width: 100%;
+
+    margin-top: 30px;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3rem;
+}
+
+h2{
+    padding: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+form input{
+    height: 50px;
+    width: 100%;
+
+    padding: 30px;
+    border: none;
+
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
 }
 
 table{

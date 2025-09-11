@@ -1,4 +1,5 @@
 <?php
+$subtotal = 0;
 
 $compras = [
     ["Manzanas", 4, 1.25],
@@ -18,12 +19,14 @@ $compras = [
     ["Sal", 1, 0.85]
 ];
 
-$subtotal = 0;
-foreach($compras as $producto){
-    $subtotal += $producto[1] * $producto[2];
-}
+if(isset($_POST["nombre"], $_POST["cantidad"], $_POST["precio"]) && !empty($_POST["nombre"]) && 
+    filter_var($_POST["cantidad"], FILTER_VALIDATE_INT) !== false && 
+    filter_var($_POST["precio"], FILTER_VALIDATE_FLOAT) !== false){
 
-$iva = $subtotal + ($subtotal * 0.13);
+    $compras[count($compras) - 1] = [$_POST["nombre"], $_POST["cantidad"], $_POST["precio"]];
+
+    echo "<script> alert('Se agrego el producto') </script>";
+}
 
 ?>
 <!DOCTYPE html>
@@ -40,63 +43,85 @@ $iva = $subtotal + ($subtotal * 0.13);
 
     <div class="container">
 
-        <table>
-            <caption>Carrito de compras</caption>
+        <div class="box1">
 
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Subtotal</th>
-                </tr>
+            <h2>INGRESAR OTRO PRODUCTO</h2>
 
-            </thead>
+            <form action="" method="post">
 
-            <tbody>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre del producto" required>
 
-                <?php foreach ($compras as $producto) : ?>
+                <input type="number" name="cantidad" id="cantidad" placeholder="Ingrese la cantidad" step="1" required>
 
+                <input type="number" name="precio" id="precio" placeholder="Ingrese el precio" step="0.01" required>
+
+                <button type="submit">Agregar</button>
+
+            </form>
+
+        </div>
+
+        <div class="box2">
+
+            <table>
+                <caption>Carrito de compras</caption>
+
+                <thead>
                     <tr>
-                        <td><?= $producto[0] ?></td>
-                        <td><?= $producto[1] ?></td>
-                        <td><?= "$" . $producto[2] ?></td>
-
-                        <?php if($producto[1] >= 5){
-                            $descuento = ($producto[2] * $producto[1]) * 0.05;
-
-                            $total = $producto[2] * $producto[1] - $descuento;
-
-                            echo "<td> \${$total} - 5% desc.</td>";
-                        }
-                        
-                        else{
-                            $total = $producto[2] * $producto[1];
-                            echo "<td> \${$total} </td>";
-                        }
-                        ?>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
                     </tr>
 
-                <?php endforeach; ?>
+                </thead>
 
-            </tbody>
+                <tbody>
 
-            <tfoot>
+                    <?php foreach ($compras as $producto) : ?>
+
+                        <tr>
+                            <td><?= $producto[0] ?></td>
+                            <td><?= $producto[1] ?></td>
+                            <td><?= "$" . $producto[2] ?></td>
+
+                            <?php if ($producto[1] >= 5) {
+
+                                $descuento = ($producto[2] * $producto[1]) * 0.05;
+                                $total = $producto[2] * $producto[1] - $descuento;
+
+                                $precio_iva = $total + ($producto[2] * $producto[1] * 0.13);
+
+                                $subtotal += $precio_iva;
+
+                                echo "<td> \$" . round($precio_iva, 2) . " - 5% desc.</td>";
+                            } 
+                            
+                            else {
+                                $precio_iva = ($producto[2] * $producto[1]) + ($producto[2] * $producto[1] * 0.13);
+                                $subtotal += $precio_iva;
+
+                                echo "<td> \$" . round($precio_iva, 2) . "</td>";
+                            }
+                            ?>
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                </tbody>
+
+                <tfoot>
 
 
-                <tr>
-                    <td colspan="3">Subtotal</td>
-                    <td><? echo "$" . $subtotal; ?></td>
-                </tr>
-                <tr>
-                    <td colspan="3">Subtotal + IVA 13%</td>
-                    <td><?= "$" . round($iva, 2); ?></td>
-                </tr>
+                    <tr>
+                        <td colspan="3">Subtotal + IVA 13%</td>
+                        <td><?= "$" . round($subtotal, 2); ?></td>
+                    </tr>
+                </tfoot>
 
+            </table>
+        </div>
 
-            </tfoot>
-
-        </table>
     </div>
 
 </body>
